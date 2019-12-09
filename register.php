@@ -4,7 +4,6 @@
     {
         if(Token::check(Input::get('token')))
         {
-            echo "i have been run";
             // create an instance object of the class validate
             $validate = new Validate();
             //access the method checkform using the object of the class.
@@ -101,7 +100,7 @@
             <td><input type="text" name="name" id="name" <?php echo escape(Input::get('name')); ?> ></td><tr></tr>
             <td>Password:</td>
             <td><input type="password" name="password" ></td><tr></tr>
-            <td>PasswordConf:</td>
+            <td>Confirm Password:</td>
             <td><input type="password" name="passwordConf"></td><tr></tr>
             <td><input type="hidden" name="token" value="<?php echo Token::generate();?>" ></td><tr></tr>
             <td><input type="submit" name="submit" value="Register Now"></td>

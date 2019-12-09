@@ -15,14 +15,10 @@
       <ul class="topnav">
         <li><a class="active" href="index.php">Home</a></li>
         <li><a href="./register.php">SignUp</a></li>
-        <li><a href="./camera.php">Gallery</a></li> 
+        <li><a href="./camera.php">Camera</a></li> 
+        <li><a href="./gallery.php">Gallery</a></li> 
         <li><a href="./login.php">Login</a></li>
       </ul>
-      <div>
-        <form action="./login.php" method="POST">
-          <input type="text" name="username" placeholder="Username">
-        </form>
-      </div>
     </nav>
   </header>
   <!--
