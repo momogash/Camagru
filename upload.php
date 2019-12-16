@@ -13,27 +13,52 @@ else{
 
 if(Input::exists())
 {
-     if(Input::get('txt_image_name'))
+  $file = $_FILES['file'];
+
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name']; //temporary location of file on computer before upload.
+    $fileError = $_FILES['file']['error'];
+    $filesize = $_FILES['file']['size'];
+    //getting the file extension of image
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg', 'png');
+    if(in_array($fileActualExt, $allowed))
     {
-       // echo 'reached here';
-         $object = new Images();
+      if($fileError === 0)
+      {
+        if($filesize < 1000000)
+        {
+          $fileNameNew = uniqid('', true).".".$fileActualExt ; //gives a name of time format in current micro seconds
+          $fileDestination = './uploads/'.$fileNameNew;
+          move_uploaded_file($fileTmpName, $fileDestination);
+          //header("Location: gallery.php?uploadsuccess");
+          DB::getInstance()->insert('images', array(
+            'image_name' => $fileNameNew,
+            'image' => $fileDestination
+          ));
+        }
+        else{
+          // Session::flash('home', 'File too big!');
+          // Redirect::to('gallery.php');
+          echo 'File too big!';
+        }
 
-         // print_r($object);
-         //$val = $object->insert_image();
-         //print_r($val);
-
-        // // }
-        // //  else
-        // // {
-        //     foreach($object->errors() as $error)
-        //     {
-        //         echo $error, '</br>';
-        //     }
-        // // }
+      }
+      else{
+        // Session::flash('home', 'There was an error uploading the image!');
+        // Redirect::to('gallery.php');
+        echo 'There was an error uploading the image';
+      }
+      }
+      else{
+        //Session::flash('gallery', 'You cannot upload files of this type');
+        // Redirect::to('gallery.php');
         
+          echo 'You cannot upload files of this type';
+    }
 
-
-        
-  }
- }
+}
+Redirect::to('gallery.php');
 }

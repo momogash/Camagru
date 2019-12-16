@@ -12,10 +12,24 @@
         //DOM elements
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
-        const photos = document.getElementById('photos');
-        const photoButton = document.getElementById('photo-button');
-        const clearButton = document.getElementById('clear-button');
-        const photoFilter = document.getElementById('photo-filter');
+        const  stickerCanvas = document.getElementById('overlay');
+
+        const context = stickerCanvas .getContext('2d');
+
+        const photos = document.getElementById('photos'); //pics at the bottom
+        const photoButton = document.getElementById('photo-button'); //take picture button
+        const clearButton = document.getElementById('clear-button'); //clear button
+        const photoFilter = document.getElementById('photo-filter'); //filter button
+        const saveButton = document.getElementById('image_saver'); //save button
+
+        const sticker1 = document.getElementById('sticker_1');
+        const sticker2 = document.getElementById('sticker_2');
+        const sticker3 = document.getElementById('sticker_3');
+        const sticker4 = document.getElementById('sticker_4');
+        const bandena = document.getElementById('bandena');
+        const bunnyears = document.getElementById('bunnyears');
+        const glasses = document.getElementById('glasses');
+        const gradframe = document.getElementById('gradframe');
 
 
 
@@ -65,6 +79,24 @@
                 //reset select list to normal
                 photoFilter.selectIndex = 0;
             });
+
+            saveButton.addEventListener('click', function() {
+                image = canvas.toDataURL('images/png');
+                document.getElementById('hidden_data').value = image;
+            });
+            sticker1.addEventListener("click", function() {
+                context.drawImage(bandena, 0, 0, 100, 100);
+            });
+            sticker2.addEventListener("click", function() {
+                context.drawImage(bunnyears, 400, 0, 100, 100);
+            });
+            sticker3.addEventListener("click", function() {
+                context.drawImage(glasses, 0, 400, 100, 100);
+            });
+            sticker4.addEventListener("click", function() {
+                context.drawImage(gradframe, 400, 400, 100, 100);
+            });
+
 
             //filter event
             photoFilter.addEventListener('change', function(e) {
