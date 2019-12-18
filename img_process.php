@@ -27,7 +27,7 @@ if(Input::exists())
     also before being inserted into DB*/
     DB::getInstance()->insert('images', array(
             'image_name' => $imgName,
-            'user_id' => $_SESSION['user'],
+            'user_id' =>  Session::get('user'), //$_SESSION['user'],
             'image' => $fileDestination
     ));
 }
