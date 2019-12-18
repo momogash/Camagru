@@ -2,7 +2,8 @@
     require_once 'core/init.php';
     if(Input::exists())
     {
-        if(Token::check(Input::get('token')))
+        $salt = Input::get('token');
+        if(Token::check($salt))
         {
             // create an instance object of the class validate
             $validate = new Validate();
@@ -51,8 +52,21 @@
                         'name' => Input::get('name'),
                         'email' => Input::get('email'),
                         'joined' => date('Y-m-d H:i:s'),
-                        'group' => 1
+                        'group' => 1,
+                        'salt'=> $salt,
                     ));
+
+                    $email = Input::get('email');
+                    $username = Input::get('username');
+                    $subject = 'Account Registration / Verification';
+                    $message = 'Thank you for registering.';
+                    $message .= "\r\n";
+                    $message .= "<a href='http://localhost:8080/camagru/login.php?user=$username&salt=$salt'>Register Account</a>";
+                    $headers = 'From:noreply@camagru.com' . "\r\n";
+                    $headers .= "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-Type:text/html;charset=UTF-8". "\r\n";
+                    mail($email, $subject, $message, $headers);
+
 
                     Session::flash('home', 'you have been redirected to homepage');
                     Redirect::to('index.php');
@@ -106,6 +120,9 @@
             <td><input type="submit" name="submit" value="Register Now"></td>
         </tr>
         </table>
+        <div>
+            <p err1 hidden>wrong password</p>
+        </div>
     </form>
 <?php include_once './footer.php'; ?>
 </body>
