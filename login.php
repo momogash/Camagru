@@ -62,8 +62,8 @@ if(Input::exists())
             <div>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" /> 
                 <input type="submit" name="login-submit" value="Log in" />
-                <a href="#">Lost your password?</a>
-                <a href="#">Register</a>
+                <a href="./">Lost your password?</a>
+                <a href="./register.php">Register</a>forgot
             </div>
         </form><!-- form -->
         

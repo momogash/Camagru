@@ -15,6 +15,9 @@ if(Input::exists())
 {
   $file = $_FILES['file'];
 
+  var_dump($file);
+  die();
+
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name']; //temporary location of file on computer before upload.
     $fileError = $_FILES['file']['error'];
@@ -36,6 +39,7 @@ if(Input::exists())
           //header("Location: gallery.php?uploadsuccess");
           DB::getInstance()->insert('images', array(
             'image_name' => $fileNameNew,
+             'user_id' =>  Session::get('user'),
             'image' => $fileDestination
           ));
         }

@@ -30,11 +30,13 @@
                     $item = escape($item);
                     //echo $value."\n";
                     //echo $rule;
+                    $value = trim($value);
                     
 
                     //checking if the required value is empty
                     if($rule === 'required' && empty($value))
                     {
+                        
                         $this->addError("{$item} is required");
                     }
                     else
@@ -43,14 +45,26 @@
                         {
                             switch($rule)
                             {
+                                case 'name_regex_match':
+                                    if(!preg_match("/^[a-zA-Z0-9].{6,}+$/", $value)){
+                                    //if(strlen($value) < $rule_value){
+                                        $this->addError("{$item} must be a mininum of {$rule_value} characters.");
+                                    }
+                                break;
+                                case 'pass_regex_match':
+                                    if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,}$/', $value))
+                                    {
+                                        $this->addError("{$item} Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters{$rule_value}.");
+                                    }
+                                break;
                                 case 'min':
-                                    if(strlen($value) < $rule_value){
-                                    $this->addError("{$item} must be a mininum of {$rule_value} characters.");
+                                    if(!strlen($value) > $rule_value){
+                                    $this->addError("{$item} must be at least {$rule_value} characters.");
                                     }
                                 break;
                                 case 'max':
                                     if(strlen($value) > $rule_value){
-                                    $this->addError("{$item} must be a maximum of {$rule_value} characters.");
+                                    $this->addError("{$item}must be a maximum of {$rule_value} characters.");
                                     }
                                 break;
                                 case 'matches':

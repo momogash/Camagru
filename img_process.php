@@ -13,7 +13,7 @@ else{
 if(Input::exists())
 {
    if( $img = $_POST['hidden_id']){
-    //var_dump($_POST);
+   // var_dump($_POST);
     //die();
     $imgName = uniqid('', true).".png"; //gives a name of time format in current micro seconds
     $fileDestination = './uploads/'.$imgName;//$imgPath = "../uploads/gallery/".$baseImgName; //path to server folder

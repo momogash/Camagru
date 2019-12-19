@@ -13,8 +13,7 @@
                 //field name in database should match the 'name'tag on the form
                 'username' => array(
                     'required' => true,
-                    'min' => 2,
-                    'max' => 8,
+                    'name_regex_match' => '/^[a-zA-Z0-9].{6,}+$/',
                     'unique' => 'users'
                 ),
                 'email' => array(
@@ -25,7 +24,7 @@
                 ),
                 'password' => array(
                     'required' => true,
-                    'min' => 6,
+                    'pass_regex_match' => '/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,}$/',
                 ),
                 'passwordConf' => array(
                     'required' => true,
@@ -37,6 +36,8 @@
                     'max' => 20
                 )
             ));
+        //var_dump($validation);
+        //die();
             if($validation->passed())
             {
                 //since the validation has passed, we now want to create the user with the information given.
@@ -59,23 +60,28 @@
                     $email = Input::get('email');
                     $username = Input::get('username');
                     $subject = 'Account Registration / Verification';
-                    $message = 'Thank you for registering.';
+                    $message = 'Welcome to CAMAGRU!!!';
                     $message .= "\r\n";
-                    $message .= "<a href='http://localhost:8080/camagru/login.php?user=$username&salt=$salt'>Register Account</a>";
+                    $message .= 'You are successfully registered, Please select "Log In" to access your account.';
+                    $message .= "\r\n";
+                    $message .= "<a href='http://localhost:8080/camagru/login.php?user=$username&salt=$salt'>Log In</a>";
                     $headers = 'From:noreply@camagru.com' . "\r\n";
                     $headers .= "MIME-Version: 1.0" . "\r\n";
                     $headers .= "Content-Type:text/html;charset=UTF-8". "\r\n";
-                    mail($email, $subject, $message, $headers);
+                    mail($email, $subject, $message, $headers); 
 
-
-                    Session::flash('home', 'you have been redirected to homepage');
-                    Redirect::to('index.php');
+                    //Session::flash('home', 'you have been redirected to homepage');
+                    //Redirect::to('index.php');
 
                 }
                 catch(Exception $e){
                     die($e->getMessage());
 
                 }
+
+                //Redirect::to('index.php');
+
+                
             }
             else
             { 
@@ -85,8 +91,11 @@
                 }  
                 
             }
+            
     }
+   
 }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

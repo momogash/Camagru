@@ -200,7 +200,7 @@ function finalImage() {
 //             })
 
 //             //take picture from canvas
-//             function takePicture() {
+//             function take() {
 //                 //create canvas
 //                 const context = canvas.getContext('2d');
 //                 if(width && height){
