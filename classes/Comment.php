@@ -1,19 +1,45 @@
 <?php
 require_once 'core/init.php';
 
-$connect = DB::getInstance();
-$imageId = Input::get('img_id');
-
-
-if (isset($_POST['comment']))
+class Comment
 {
-    $connect->insert('comments', array(
-        'image_id' => Input::get('img_id'),
-        'commentor_id' => Session::get('user'),
-        'comment' => Input::get('right')
-    ));
-}
+    private $_comments = [];
+    public $path;
+    private $_db;
 
-Redirect::to('gallery.php');
+    public function __construct()
+    {
+        $this->_db = DB::getInstance();
+        self::setComments();
+    }
+
+     public function comment( $id, $username, $comment ) {
+        try {
+            $sql = "INSERT INTO `comments` SET `img_Id` = ?, `username` = ?, comment = ?";
+            $query = $this->_pdo->prepare( $sql );
+            $query->execute( [ $id, $username, $comment ] );
+            self::setComments();
+            $details = self::_getPostDetails( $id );
+            $user = self::_getUser( $details[ 'username' ] );
+            if ( self::getUserNotifications( $details[ 'username' ] ) ) {
+                require_once 'SendMail.class.php';
+                SendMail::comment( $user[ 'email' ] );
+            }
+         } catch (PDOException $e ) {
+			die( $e->getMessage() );
+		}
+    }
+
+     private function setComments() {
+        $sql = "SELECT * FROM comments";
+        $query = $this->_pdo->prepare( $sql );
+        $query->execute();
+        $this->_comments = $query->fetchALL();
+    }
+    
+    public function getComments() {
+        return $this->_comments;
+    }
+}
 
 ?>

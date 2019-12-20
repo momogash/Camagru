@@ -4,21 +4,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 class Image
 {
-    public $path;
+    //public $path;
     private $_db;
     public function __construct()
     {
-        $this->path = __DIR__ . '/../uploads';
+        //$this->path = __DIR__ . '/../uploads';
         $this->_db = DB::getInstance();
     }
-    public function setPath($path)
-    {
-        if (substr($path, -1) === '/') // if the last charater is '/';
-        {
-            $path = substr($path, 0, -1); // remove the last character;
-        }
-        $this->path = $path;
-    }
+    // public function setPath($path)
+    // {
+    //     if (substr($path, -1) === '/') // if the last charater is '/';
+    //     {
+    //         $path = substr($path, 0, -1); // remove the last character;
+    //     }
+    //     $this->path = $path;
+    // }
     public function getImages()
     {
         $imgObj = $this->_db->get('images', ['image_id', '>', 0]); // returns an array of results refer db class
@@ -52,17 +52,20 @@ class Image
     {
         return $this->_db->get('likes', ['image_id', '=', $imageId])->count();
     }
+
     public function getComments($imageId)
     {
         $comments = $this->_db->get('comments', ['image_id', '=', $imageId])->results();
         
         return $comments;
     }
+
     public function getLikes($currentUserId, $imageId)
     {
         $imageLikes = $this->_db->query('SELECT * FROM likes WHERE image_id = ? AND liker_id = ?', [$imageId, $currentUserId]);
         return $imageLikes->count();
     }
+    
     public function deleteLikes($imageId, $currentUserId)
     {
         return $this->_db->query('DELETE FROM likes WHERE image_id = ? AND liker_id = ?', [$imageId, $currentUserId]);

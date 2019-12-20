@@ -35,24 +35,9 @@ require_once './core/init.php';
         </form>
     </div>
 </center>
-<div class="comments">
+
 <?php
-$comment_counter = 0;
-$gallery = 
-$count = count($gallery->getComments($gallery->paginatedPicId($image)));
-try
-{
-    while($comment_count > $comment_cntr)
-    {
-        $comments_objByImg = $gallery->getComments($gallery->paginatedPicId($image))[$comment_cntr]->comment;
-        echo $comments_objByImg . "<br>";
-        $comment_cntr = $comment_cntr + 1;
-    }
-}
-catch (Exception $er)
-{
-    echo $er;
-}
+
 ?>
 </div>
 <?php
@@ -75,7 +60,7 @@ if (isset($_GET['page']) && !empty($_GET['page']))
     $page = 1;
 }
 
-$array1 = [];    
+$array1 = [];
 foreach ($arr as $obj) {
     $array1[] = $obj->image_name;
 }
