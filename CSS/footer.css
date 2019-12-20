@@ -1,3 +1,20 @@
+.left, .right {
+  float: left;
+  width: 20%; /* The width is 20%, by default */
+}
+
+.main {
+  float: left;
+  width: 60%; /* The width is 60%, by default */
+}
+
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 800px) {
+  .left, .main, .right {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -23,7 +40,7 @@ footer{
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
-	text-align: left;
+	text-align: center;
 	font: bold 16px sans-serif;
 
 	/*padding: 55px 50px;
@@ -34,7 +51,8 @@ footer{
 .footer-distributed .footer-center,
 .footer-distributed .footer-right{
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: middle;
+	text-align: center;
 }
 
 .footer-distributed .footer-left{
@@ -45,10 +63,16 @@ footer{
 	color:  #ffffff;
 	font: normal 36px 'Cookie', cursive;
 	margin: 0;
+	text-align: center;
+	
+	vertical-align: middle
 }
 
 .footer-distributed h3 span{
 	color: #5f0a87;
+	font-size:10vw;
+	vertical-align: middle;
+	text-align: center;
 }
 
 
@@ -75,6 +99,7 @@ footer{
 
 .footer-distributed .footer-center{
 	width: 35%;
+	display:inline-block;
 }
 
 .footer-distributed .footer-center i{

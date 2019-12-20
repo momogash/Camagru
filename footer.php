@@ -22,9 +22,9 @@
 				<h3>Cama<span>gru</span></h3>
 
 				<p class="footer-links">
-					<a href="#">Gallery</a>
+					<a href="./gallery.php">Gallery</a>
 					·
-					<a href="#">SignUp</a>
+					<a href="./register.php">SignUp</a>
 					·
 				<!--	<a href="#">Logout</a> -->
 				</p>
@@ -32,13 +32,13 @@
 				<p class="footer-company-name">momogash &copy; 2019</p>
 			</div>
 
-			<div class="footer-center">
+			<!--<div class="footer-center">
 				<div>
 					<i class="fa fa-envelope"></i>
 					<p><a href="mailto:support@company.com">info.camagru.2019@gmail.com</a></p>
 				</div>
 
-			</div>
+			</div> -->
 
 		</footer>
 
