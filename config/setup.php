@@ -23,6 +23,7 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(100) NOT NULL,
 	`group` INT NOT NULL,
 	salt VARCHAR(350) NOT NULL,
+	confirmed TINYINT DEFAULT 0,
 	joined DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();

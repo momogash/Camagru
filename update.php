@@ -49,12 +49,35 @@ if(Input::exists())
 }
 ?>
 
-<form action="" method="post">
-    <div class="field">
+ <?php include_once './header.php'; ?>
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel="stylesheet" type="text/css" href="./CSS/signup.css">
+     <title>Update</title>
+ </head>
+ <body>
+     <form action="" method="post">
+    <div class="container">
         <label for="name">Name</label>
         <input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
+        <br/>
+        <label for="name">Email</label>
+        <input type="text" name="email" value="<?php echo escape($user->data()->email); ?>">
+        <br/>
+        <label for="name">password</label>
+        <input type="text" name="password" value="<?php echo escape($user->data()->password); ?>">
+        <br/>
         <input type="submit" value="update">
         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
     </div>
 </form>
+     
+ </body>
+ </html>
+
 <?php include_once './footer.php'; ?>

@@ -105,18 +105,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/header.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/footer.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/header.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/footer.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/signup.css">
 
 </head>
 <body>
-    <h1> Register New User Here</h1>
-    <div>
+    
+    <div >
+        <h1> Register Here</h1>
      <!--   <img src="../img/logo.png"><br><br> --->
     <form action="register.php" method="POST">
-        <table><tr>
+        <table class="container"><tr>
             <td>username:</td>
-            <td><input type="text" name="username" <?php echo escape(Input::get('username')); ?> ></td><tr></tr>
+            <td><input type="text"  name="username" <?php echo escape(Input::get('username')); ?> ></td><tr></tr>
             <td>Email:</td>
             <td><input type="email" name="email" id="email"></td><tr></tr>
             <td>Name:</td>

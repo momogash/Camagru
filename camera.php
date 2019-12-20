@@ -17,10 +17,7 @@ require './header.php';
     <div class="top-container">
       <!-- <form method="post" action="cam_processer.php">  </form>-->
       <video id="video" height="500" width="500" autoplay>video not available</video>
-      <br />
       <div class="stickers">
-        <a href="#" id="save_stickers" class="btn btn-light">save sticker</a>
-      
               <img
                 src="./stickers/bandena.png"
                 id="bandena"
@@ -32,7 +29,7 @@ require './header.php';
               src="./stickers/bunnyears.png"
               id="bunnyears"
               style="height: 80px; width: 80px;"
-              onclick="draw('bunnyears', 500, 300);"
+              onclick="draw('bunnyears', 200, 300);"
             />
             <img
               src="./stickers/glasses.png"
@@ -47,11 +44,10 @@ require './header.php';
               onclick="draw('gradframe', 500, 300);"
             />
       </div>
-      <br />
 
       <button id="photo-button" class="btn btn-dark"onclick="snap();" >Take Photo</button>
 
-      <select id="photo-filter" class="select">
+     <!-- <select id="photo-filter" class="select">
         <option value="none">Normal</option>
         <option value="grayscale(100%)">Grayscale</option>
         <option value="sepia(100%)">Sepia</option>
@@ -59,16 +55,16 @@ require './header.php';
         <option value="hue-rotate(90deg)">Hue</option>
         <option value="blur(5px)">Blur</option>
         <option value="contrast(200%)">Contrast</option>
-      </select>
-      <canvas id="canvas" height="500" width="500"d></canvas>
+      </select> -->
       <button id="clear-button" class="btn btn-light">Clear</button>
       <form action="img_process.php" method="POST">
         <input type="hidden" id="hidden_data" name="hidden_id" />
         <input type="submit" class="btn btn-dark" id="image_saver" name="image_saver" value="Save"/>
         <input type="hidden" id="sticker" name="addsticker" />
-        <input type="submit" class="btn btn-dark" id="sticker_saver" name="sticker_saver" value="Save sticker"/>
+        
       </form>
     </div>
+    <canvas id="canvas" height="500" width="500"d></canvas>
 
     <div class="btom-container">
       <div id="photos"></div>

@@ -1,6 +1,23 @@
 <?php
 require_once 'core/init.php';
 
+if (isset($_GET['user']))
+{
+    $user = new User();
+    $status = $user->find(Input::get('user'));
+    
+    if ($status)
+    {
+        $mail_salt = Input::get('salt');
+        $db_salt = $user->data()->salt;
+        $id = $user->data()->id;
+        if ($db_salt == $mail_salt)
+        {
+            $user->update(['confirmed' => 1], $id);
+        }
+    }
+}
+
 if(Input::exists())
 {
     if(Token::check(Input::get('token')))
@@ -14,7 +31,9 @@ if(Input::exists())
         if($validation->passed())
         {
             $user = new User();
-            $login = $user->login(Input::get('username'), Input::get('password'));
+            $login = $user->login(escape(Input::get('username')), escape(Input::get('password')));
+            //var_dump($login);
+            // die();
             if($login)
             {
                 Redirect::to('index.php');
@@ -53,12 +72,8 @@ if(Input::exists())
     <section id="content">
         <form action="#" method="post">
             <h1>Login Form</h1>
-            <div>
                 <input type="text" placeholder="Username" name="username" id="username" />
-            </div>
-            <div>
                 <input type="password" placeholder="Password" name="password" id="password" />
-            </div>
             <div>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" /> 
                 <input type="submit" name="login-submit" value="Log in" />
