@@ -55,8 +55,8 @@ require './header.php';
         <option value="hue-rotate(90deg)">Hue</option>
         <option value="blur(5px)">Blur</option>
         <option value="contrast(200%)">Contrast</option>
-      </select> -->
-      <button id="clear-button" class="btn btn-light">Clear</button>
+      </select> 
+      <button id="clear-button" class="btn btn-light">Clear</button> -->
       <form action="img_process.php" method="POST">
         <input type="hidden" id="hidden_data" name="hidden_id" />
         <input type="submit" class="btn btn-dark" id="image_saver" name="image_saver" value="Save"/>
